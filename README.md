@@ -133,3 +133,48 @@ Main use of mysqlup, daily cronjob : send alert by mail if mysql is down
 
     * * * * * python mysqlup.py --email john@doe.com
 
+# DeleteOldBackup
+
+Deletes old backups when hard drive is full.
+
+- [DESCRIPTION](#description)
+- [INSTALLATION](#installation)
+- [USE CASES](#use-cases)
+
+### DESCRIPTION
+**deleteoldbackup** frees space of old backups.
+
+The script is compatible with python 2 and 3.
+
+This script is designed to run daily as a cronjob to check the free space.
+
+### INSTALLATION
+Download the script
+
+    wget https://github.com/WassimAttar/hostingtools/raw/master/deleteoldbackup.py
+
+### USE CASES
+Silent mode : frees space.
+
+    python deleteoldbackup.py
+
+Verbose mode : frees space and echoes details.
+
+    python deleteoldbackup.py -v
+    ----------------------------------
+		Free space before : 35Go
+		Free space after : 43Go
+		Freed space : 8Go
+		---------------------
+		delete 2016-06-01 : 4Go
+		delete 2016-06-02 : 3Go
+		delete 2016-06-03 : 1Go
+    ----------------------------------
+
+Send alert by mail
+
+    python deleteoldbackup.py --email john@doe.com
+
+Main use of deleteoldbackup, daily cronjob : send alert by mail when space is freed
+
+    * * * * * python deleteoldbackup.py --email john@doe.com
