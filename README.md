@@ -17,7 +17,7 @@ A dump of the databases is also available for backup.
 
 The script is compatible with python 2 and 3.
 
-This script is deisgned to run daily as a cronjob to check the health of databases.
+This script is designed to run daily as a cronjob to check the health of databases.
 
 ### INSTALLATION
 Download the script
@@ -79,4 +79,57 @@ Dumps databases for backup : checks, analyses, optimizes and repairs all mysql d
 Main use of mysqldefrag, daily cronjob : checks, analyses, optimizes and repairs all mysql databases, dump them into a folder and sends a report by mail at 4 AM
 
     0 4 * * * python mysqldefrag.py --email john@doe.com --dumppath /root/dump_database/
+
+
+# MysqlUp
+
+Checks if Mysql is up.
+
+- [DESCRIPTION](#description)
+- [INSTALLATION](#installation)
+- [USE CASES](#use-cases)
+
+### DESCRIPTION
+**mysqlup** checks if mysql is up.
+
+An alert is raised if mysql is down and can be sent by email.
+
+The script is compatible with python 2 and 3.
+
+This script is designed to run as a cronjob to check if mysql is up.
+
+### INSTALLATION
+Download the script
+
+    wget https://github.com/WassimAttar/hostingtools/raw/master/mysqlup.py
+
+Make sure you have installed python-mysqldb or python-mysql.connector modules.
+
+The mysql root password is saved in the mysql config file /root/.my.cnf
+
+Check that you have this entry
+
+    [client]
+    password=p4ss0rD
+
+### USE CASES
+Silent mode : checks if mysql is down, in this case, mysql is restarted.
+
+    python mysqlup.py
+
+Verbose mode : checks if mysql is down, in this case, mysql is restarted.
+
+    python mysqlup.py -v
+    ----------------------------------
+    Mysql Down
+    Restarting
+    ----------------------------------
+
+Send alert by mail
+
+    python mysqlup.py --email john@doe.com
+
+Main use of mysqlup, daily cronjob : send alert by mail if mysql is down
+
+    * * * * * python mysqlup.py --email john@doe.com
 
