@@ -136,7 +136,7 @@ chmod 600 {0}""".format(mysqlConfFile))
 		option = ""
 		if dataBase == "mysql" :
 			option = " --ignore-table=mysql.event "
-		subprocess.call("mysqldump -c -u root {0}{1} > {2}.sql".format(option,dataBase,self.__dumpPath+dataBase))
+		subprocess.call("mysqldump -c -u root {0}{1} > {2}.sql".format(option,dataBase,self.__dumpPath+dataBase),shell=True)
 
 	def run(self) :
 		parser = argparse.ArgumentParser(description='Mysql Defragmentation')
